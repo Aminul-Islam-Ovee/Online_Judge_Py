@@ -3,12 +3,9 @@ while 1 == 1:
     subList = []
     try:
         x,y = map(int, input().split())
-        if 0<x<10000 and 0<y<10000:
-            subList.append(x)
-            subList.append(y)
-            list.append(subList)
-        else:
-            print("Invalid input")
+        subList.append(x)
+        subList.append(y)
+        list.append(subList)
     except:
         break
 
@@ -29,6 +26,10 @@ def Cycle(inp1, inp2):
 
 for pair in list:
     inp1, inp2 = pair
-    x = Cycle(inp1, inp2)
-    print (inp1, inp2, x)
+    if 0<inp1<10000 and 0<inp2<10000:
+        x = Cycle(inp1, inp2)
+        print (inp1, inp2, x)
+    else:
+        print(inp1, inp2, "Invalid input")
+        
 

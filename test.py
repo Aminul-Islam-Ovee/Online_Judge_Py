@@ -1,28 +1,29 @@
-import sys
-import functools
+def CycleLen(num):
+    # Start with one number, the one given.
 
-
-@functools.lru_cache(None)
-def cycle(n):
+    curr = num
     count = 1
-    while n != 1:
+
+    # Until you get to 1, increase count and calculate next.
+
+    while curr > 1:
         count += 1
-        if n % 2 == 1:
-            n = 3 * n + 1
-        else:
-            n = n // 2
-        print(n)
+        curr = curr // 2 if curr% 2 == 0 else curr * 3 + 1
 
     return count
 
+while True:
+    # Reads a single line and splits into integers. Any problem, exit loop.
 
-@functools.lru_cache(None)
-def max_cycle(x, y):
-    x, y = min(x, y), max(x, y)
-    return max(cycle(n) for n in range(x, y + 1))
+    try:
+        inputInt = [int(item) for item in input().split()]
+        if len(inputInt) != 2: break
+    except:
+        break
 
+    # Find value in the range with the longest cycle then print it.
 
-if __name__ == '__main__':
-    for line in sys.stdin:        
-        x, y = map(int, line.split()[:2])
-        print(x, y, max_cycle(x, y))
+    maxCycle = 0
+    for number in range(min(inputInt), max(inputInt) + 1):
+        maxCycle = max(maxCycle, CycleLen(number))
+    print(inputInt[0], inputInt[1], maxCycle)

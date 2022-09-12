@@ -19,6 +19,9 @@ while 1 == 1:
         if 0<x<10000 and 0<y<10000:
             print(x, y, maxCycle(x,y))
         else:
-            print("Invalid Input. Try again")
+            print(x, y, "Invalid input")
+
     except:
         break
+
+
