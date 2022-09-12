@@ -1,3 +1,4 @@
+# Here the cycles are compared only for two inputs. Excluding the integers between the two numbers.
 
 call = True
 inp = []
@@ -38,7 +39,6 @@ def calculate(list):
             if maxCycle < len(cycle) + 1:
                 maxCycle = len(cycle) + 1
             #empty the cycle for another input
-            #print("Cycle:",cycle)
             cycle = []
         result.append(maxCycle)
         maxCycle = 0
