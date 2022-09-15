@@ -1,29 +1,45 @@
 data =[]
-field =[]
 
 def display(data):
     for index, lists in enumerate(data):
         print("\nField #{}".format(index+1))
         for cols in lists:
-            print (''.join(cols))
+            print (''.join(str(i) for i in cols))
 
-def updateField(x,y):
-    rowMin = x - 1
-    rowMax = x + 1
-    colMin = y - 1
-    colMax = y + 1
+def updateField(field,rs,rb,cs,cb):
+    for i in range(rs, rb+1):
+        for j in range(cs,cb+1):
+            if field[i][j] != "*":
+                field[i][j]+=1
+    
+    return field
 
 
-def solveMine(field):
-    for i,c in enumerate(field):
-        for j,r in enumerate(c):
-            if r =="*":
-                updateField(i,j)
+def solveMine(fld):
+    field = fld.copy()
+    for x,r in enumerate(fld):
+        for y,c in enumerate(r):
+            if c =="*":
+                rowMin= x - 1 if x > 0 else x
+                rowMax= x + 1 if x < len(fld)-1 else x
+                colMin= y - 1 if y > 0 else y
+                colMax= y + 1 if y < len(r)-1 else y
+                field = updateField(field,rowMin,rowMax,colMin,colMax)
+    return field
 
 
 def splitInput(data):
-    for lists in (data):
-        solvedList= solveMine(lists)
+    for i,lists in enumerate(data):
+        data[i]= solveMine(lists)
+    display(data)
+
+def replaceDots(data):
+    for lists in data:
+        for col in lists:
+            for i,value in enumerate(col):
+                if value ==".":
+                    col[i]=int(0)
+    splitInput(data)
 
 while 1 == 1:
     try:
@@ -34,7 +50,7 @@ while 1 == 1:
         else:
             for i in range(n):
                 while 2 == 2:
-                    inp = str(input())
+                    inp = input()
                     rows =[]
                     if len(inp) == m:
                         rows.extend(inp)
@@ -47,4 +63,4 @@ while 1 == 1:
     except:
         print("Please enter a number or (0 0) to exit")
 
-splitInput(data)
+replaceDots(data)
