@@ -14,7 +14,6 @@ def updateField(field,rs,rb,cs,cb):
     
     return field
 
-
 def solveMine(fld):
     field = fld.copy()
     for x,r in enumerate(fld):
@@ -26,7 +25,6 @@ def solveMine(fld):
                 colMax= y + 1 if y < len(r)-1 else y
                 field = updateField(field,rowMin,rowMax,colMin,colMax)
     return field
-
 
 def splitInput(data):
     for i,lists in enumerate(data):
