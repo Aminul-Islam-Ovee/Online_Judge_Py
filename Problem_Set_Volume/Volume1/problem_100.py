@@ -1,3 +1,15 @@
+# calculate the cycle length of a number
+def cycle_Length(x):
+    count = 1
+    while x != 1:
+        if x % 2 == 0:
+            x //= 2
+        else:
+            x = 3*x + 1
+        count += 1
+    return count
+
+
 # Create a loop for iterating input.
 while True:
     try:
@@ -5,16 +17,14 @@ while True:
         pairs = input().strip()
         # Convert the string into integer and store them into different variables.
         i, j = map(int, pairs.split())
-
+        max_count = 0
         # Evaluating the condition of input range
-        if 0 < i < 1000000 and 0 < j < 1000000:
-
-            print(i, j, i+j)
-        else:
-            print("Please enter two numbers between 0 and 1000000")
-
+        for n in range(min(i, j), max(i, j)+1):
+            # print(i, j, i+j)
+            count = cycle_Length(n)
+            max_count = max(max_count, count)
+        print(i, j, max_count)
     except EOFError:
         break
-
     except ValueError:
         print("Invalid input. Please insert two integer numbers.")
